@@ -1,0 +1,16 @@
+{
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-runtime",
+      "@babel/plugin-proposal-class-properties" ,// 该插件可转换静态类属性以及使用属性初始值设定项语法声明的属性
+      ["import", {
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": "css" // `style: true` 会加载 less 文件
+      }]
+      // "react-hot-loader/babel"
+    ]
+  }
