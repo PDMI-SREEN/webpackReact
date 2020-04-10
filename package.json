@@ -1,11 +1,11 @@
 {
-  "name": "webReact",
+  "name": "webapckreact",
   "version": "1.0.0",
-  "description": "",
+  "description": "手工搭建webpack  react 项目",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --open --colors compress: true",
+    "start": "webpack-dev-server --open --colors",
     "lint": "eslint ./src",
     "lint:watch": "esw -w ./src"
   },
@@ -42,5 +42,13 @@
     "less-loader": "^5.0.0",
     "react-hot-loader": "^4.12.20",
     "save-dev": "0.0.1-security"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PDMI-SREEN/webpackReact.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PDMI-SREEN/webpackReact/issues"
+  },
+  "homepage": "https://github.com/PDMI-SREEN/webpackReact#readme"
 }
