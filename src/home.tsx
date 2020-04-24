@@ -11,6 +11,27 @@ class Home extends React.Component{
     componentWillMount(){
         console.log(process.env)
     }
+
+    componentDidMount(){
+        this.getAjax()
+    }
+
+    getAjax(){
+        let newXml= new XMLHttpRequest()
+        newXml.onreadystatechange=function(){
+            console.log(this.readyState,this)
+            if(this.readyState==4){
+                    // this.responseText
+                    // this.response
+                    console.log("Home -> newXml.onreadystatechange -> this.response", this.response)
+                    console.log("Home -> newXml.onreadystatechange -> this.responseText", this.responseText)
+            }
+        }
+
+        newXml.open("get","http://mock.studyinghome.com/mock/5e8e9339301a4f07a0c8a866/react/getlist")
+        newXml.send()
+    }
+
     render(){
         return (
              <Layout>
@@ -89,7 +110,8 @@ class Home extends React.Component{
                     }}
                     >
                         <Cout />
-                        <FriendStatus  status={false} />
+                        {//<FriendStatus  status={false} />
+                    }
                     </Content>
                 </Layout>
                 </Layout>

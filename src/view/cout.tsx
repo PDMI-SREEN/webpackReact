@@ -19,7 +19,7 @@ const Example=()=> {
         <button onClick={() => setCount(count + 1)}>
           Click me
         </button>
-        <FriendStatus status ={ (count%2)? true:false} />
+        {/* <FriendStatus status ={ (count%2)? true:false} /> */}
       </div>
         
     );
