@@ -1,30 +1,45 @@
 import React from "react"
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu, Breadcrumb ,Button} from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 import Cout from "./view/cout";
 import FriendStatus from "./view/friendStatus"
-
+import { connect } from 'react-redux';
+import {  increase ,add , getUserInfo} from "./actions"
+import { getList  } from  "./api/api"
+  
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
-class Home extends React.Component{
+class Home extends React.Component<any,any>{
+    constructor(props:any){
+        super(props)
+        this.state={
+            data:[],
+            number:0
+        }
+    }
     componentWillMount(){
-        console.log(process.env)
+        this.props.getUserInfo()
+        // getList()
+        // console.log("Home -> componentWillMount -> getList()", getList())
+        console.log(process.env,this.props,this.props.increase(),this.props.getUserInfo())
     }
 
     componentDidMount(){
-        this.getAjax()
+        // this.getAjax()
+        // getList()
+        this.props.getUserInfo()
     }
 
     getAjax(){
         let newXml= new XMLHttpRequest()
         newXml.onreadystatechange=function(){
-            console.log(this.readyState,this)
+            // console.log(this.readyState,this)
             if(this.readyState==4){
                     // this.responseText
                     // this.response
-                    console.log("Home -> newXml.onreadystatechange -> this.response", this.response)
-                    console.log("Home -> newXml.onreadystatechange -> this.responseText", this.responseText)
+                    // console.log("Home -> newXml.onreadystatechange -> this.response", this.response)
+                    // console.log("Home -> newXml.onreadystatechange -> this.responseText", this.responseText)
             }
         }
 
@@ -32,7 +47,22 @@ class Home extends React.Component{
         newXml.send()
     }
 
+
+    onClick(){
+        this.props.increase()
+    }
+
+    onClickAdd(){
+        this.props.add()
+        this.props.getUserInfo()
+        this.props.getList()
+        console.log("Home -> onClickAdd -> getList", this.props)
+        // this.props.getList()
+    }
+
     render(){
+        // console.log(this.props.counter.userInfo)
+        console.log("Home -> render -> this.props.counter.userInfo", this.props)
         return (
              <Layout>
                 <Header className="header">
@@ -110,6 +140,9 @@ class Home extends React.Component{
                     }}
                     >
                         <Cout />
+                        <div>{this.props.count}</div>
+                        <Button onClick={()=>this.onClick()}>--(减)</Button>
+                        <Button onClick={()=>this.onClickAdd()}>++加</Button>
                         {//<FriendStatus  status={false} />
                     }
                     </Content>
@@ -120,4 +153,27 @@ class Home extends React.Component{
     }
 }
 
-export default Home
+const mapStateToProps = (state:any, ownProps:any) => {
+    console.log(state,ownProps)
+   return  {
+    count: state.counter.count,
+    userInfo:state.counter.userInfo,
+    list:state.counter.list
+  }}
+
+// const mapDispatchToProps = (dispatch: (arg0: { type: string; }) => any) => {
+//     return {
+//         increase:()=>dispatch({
+//             type:"increase"
+//         }),
+//     }
+// }
+
+const mapDispatchToProps = {
+    increase,
+    add,
+    getUserInfo,
+    getList
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home) 

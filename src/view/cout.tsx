@@ -1,5 +1,6 @@
 
 import React,{useState ,useEffect} from "react";
+import { Button } from "antd";
 import FriendStatus from "./friendStatus"
 
 const Example=()=> {
@@ -10,15 +11,13 @@ const Example=()=> {
         // 使用浏览器的 API 更新页面标题
         document.title = `You clicked ${count} times`;
     });
-
-
     // console.log("Example -> (count%2)? true:false", (count%2)? true:false)
     return (
       <div>
         <p>You clicked {count} times</p>
-        <button onClick={() => setCount(count + 1)}>
+        <Button onClick={() => setCount(count + 1)}>
           Click me
-        </button>
+        </Button>
         {/* <FriendStatus status ={ (count%2)? true:false} /> */}
       </div>
         
