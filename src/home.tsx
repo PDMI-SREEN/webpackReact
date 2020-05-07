@@ -20,6 +20,7 @@ class Home extends React.Component<any,any>{
     }
     componentWillMount(){
         this.props.getUserInfo()
+        this.props.getList()
         // getList()
         // console.log("Home -> componentWillMount -> getList()", getList())
         console.log(process.env,this.props,this.props.increase(),this.props.getUserInfo())
